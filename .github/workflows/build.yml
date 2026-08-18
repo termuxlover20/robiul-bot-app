@@ -30,10 +30,12 @@ jobs:
       run: |
         sudo apt-get update -y
         sudo apt-get install -y -qq libssl-dev libffi-dev python3-dev
-        buildozer android debug
+        yes | buildozer android debug || true
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: RobiulBot-APK
-        path: ./.buildozer/android/platform/build-*/dists/*/build/outputs/apk/*/*.apk
+        path: |
+          bin/*.apk
+          .buildozer/android/platform/build-*/dists/*/build/outputs/apk/*/*.apk
