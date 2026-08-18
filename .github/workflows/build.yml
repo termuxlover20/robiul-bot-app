@@ -24,12 +24,11 @@ jobs:
     - name: Build with Buildozer
       run: |
         sudo apt-get update
-        sudo apt-get install -y libssl-dev libffi-dev python3-dev build-essential
-        buildozer android debug
+        sudo apt-get install -y libssl-dev libffi-dev python3-dev
+        ACCEPT_SDK_LICENSES=1 buildozer android debug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: RobiulBot-APK
         path: bin/*.apk
-
