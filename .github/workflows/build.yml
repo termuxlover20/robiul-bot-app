@@ -25,9 +25,11 @@ jobs:
       uses: android-actions/setup-android@v3
 
     - name: Build with Buildozer
+      env:
+        DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo apt-get update
-        sudo apt-get install -y libssl-dev libffi-dev python3-dev
+        sudo apt-get update -y
+        sudo apt-get install -y -qq libssl-dev libffi-dev python3-dev
         yes | buildozer android debug || true
 
     - name: Upload APK
